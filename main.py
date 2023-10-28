@@ -4,6 +4,7 @@ import time
 from math import cos, sin, pi
 from game import Game
 import sys
+from menu import Menu
 import pygame
 from earth import Earth 
 from cloud import Cloud
@@ -24,22 +25,25 @@ MAPSIZE = 16 #number of slots on the earth
 MAP_RADIUS = 64; # px
 ATMOS_RADIUS = 128; # px
 #objects on map
-map = [ 0 for i in range(MAPSIZE) ]
+map = [ '' for i in range(MAPSIZE) ]
 # POSITIONS = [ #map locatons in absolute pixels
 #   (MAP_RADIUS * cos(i * 2 * pi), MAP_RADIUS * sin(i * 2 * pi)) for i in range(MAPSIZE)
 # ]
 angles = 1 / MAPSIZE # in tau
 
 screen = pygame.display.set_mode((960, 540))
-pygame.display.set_caption('Hello World!')
+pygame.display.set_caption('Net Zero Hero')
 BG_COLOR = 'light gray'
 block_size = 32
 
+menu = Menu(screen, 500, 100, 'light gray', 'dark gray', 'black', 20)
+
 earth = Earth(MAP_RADIUS, ATMOS_RADIUS, 8, "assets/Earth.png")
-player = Player( 8, (255,255,0), MAP_RADIUS)
+player = Player( 8, 'green', MAP_RADIUS)
 cloud0 = Cloud( ATMOS_RADIUS, screen.get_height() / 2, 0, 10, 10, 1)
 
-game = Game(screen, map, earth, player, cloud0) # create first game
+game = Game(screen, map, earth, player, menu, cloud0) # create first game
+
 
 def main():
     prevtime = time.time()
@@ -51,7 +55,8 @@ def main():
         secondCounter += dt
         timeElapsed += dt
         if (secondCounter >= 1 ):
-            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10, int(timeElapsed // 1)))
+            game.perSecondUpdate()
+            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10, int(1.05 ** int(timeElapsed // 5))))
             secondCounter = 0
 
         game.update(dt)

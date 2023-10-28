@@ -1,5 +1,5 @@
-from cloud import Cloud
 import pygame
+from math import sin, cos, pi
 
 
 class Earth:
@@ -14,7 +14,19 @@ class Earth:
     def is_collided_with(self, cloud) -> bool:
         return cloud.dist <= self.atmosphere_radius
 
-    def draw(self, screen, map_size):
+
+    def draw(self, screen, map):
+        for i, slot in enumerate(map):
+            x, y = cos(i/len(map) * 2 * pi) * (self.radius+20) + (960 /2), sin(i/len(map) * 2* pi) * (self.radius+20) + (540 /2)
+            convert = {
+                '': 'dark blue',
+                'tree': 'green',
+                'wind': 'white',
+                'dac': 'purple',
+                'solar': 'yellow',
+                'nuclear': 'blue',
+            }
+            pygame.draw.circle(screen, convert[slot], [x, y], 10)
         pygame.draw.circle(screen, 'white', (screen.get_width() / 2, screen.get_height() / 2) , self.atmosphere_radius, width=1)
         screen.blit(self.image, [screen.get_width() / 2 - self.radius, screen.get_height() / 2 - self.radius])
     

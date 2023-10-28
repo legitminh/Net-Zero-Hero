@@ -59,6 +59,7 @@ class Box(UiElement):
 
     def set_position(self, position: tuple[int, int]):
         self.position = position
+        return self
 
     def move(self, displacement: tuple[int, int]):
         self.position = self.position[X] + displacement[X], self.position[Y] + displacement[Y]
@@ -511,6 +512,7 @@ class TextBox(UiElement):
 
     def set_position(self, position: tuple[int, int]):
         self.box.set_position(position)
+        return self
 
     def move(self, displacement: tuple[int, int]):
         self.box.move(displacement)

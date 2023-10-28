@@ -16,13 +16,14 @@ class Cloud:
     def update(self, dt):
         self.move(-1 * self.speed * dt)
         if self.dist <= self.ATMOS_SIZE:
-
             return True
 
-
     def pos(self):
-        return cos(self.angle * 2 * pi) * self.dist, sin(self.angle * 2 * pi) * self.dist
-
+        relativePos = cos(self.angle * 2 * pi) * self.dist, sin(self.angle * 2 * pi) * self.dist
+        absolutePos = relativePos[0] + 960/2, relativePos[1] + 540/2
+        return absolutePos
+    def damage(self, damage):
+        self.hp -= damage
     def draw(self, screen):
         def make_text(x, y, what):
             font = pygame.font.SysFont('arial', int(10))
@@ -30,7 +31,8 @@ class Cloud:
             text_rect = text.get_rect(center=(x, y))
             screen.blit(text, text_rect)
 
-        absolutePos = self.pos()[0] + screen.get_width()/2, self.pos()[1] + screen.get_height()/2
+        # absolutePos = self.pos()[0] + screen.get_width()/2, self.pos()[1] + screen.get_height()/2
+        absolutePos = self.pos()
         pygame.draw.circle(screen, 'white', absolutePos , self.size, width=1)
         make_text( absolutePos[0], absolutePos[1], self.hp)
 
