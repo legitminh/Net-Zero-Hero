@@ -15,5 +15,6 @@ class Earth:
         return cloud.dist <= self.atmosphere_radius
 
     def draw(self, screen, map_size):
+
         screen.blit(self.image, [screen.get_width() / 2 - self.radius, screen.get_height() / 2 - self.radius])
     

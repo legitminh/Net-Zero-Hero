@@ -26,9 +26,9 @@ class Game:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if pygame.key == pygame.K_Right:
+                if pygame.key == pygame.K_RIGHT:
                     self.player.move(MOVEMENT_AMOUNT)
-                elif pygame.key == pygame.K_Left:
+                elif pygame.key == pygame.K_LEFT:
                     self.player.move(-MOVEMENT_AMOUNT)
 
         

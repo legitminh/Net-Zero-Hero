@@ -36,7 +36,7 @@ block_size = 32
 
 earth = Earth(MAP_RADIUS, ATMOS_RADIUS, 8, "assets/Earth.png")
 player = Player( 8, (255,255,0), MAP_RADIUS)
-cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 1, 10)
+cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 10, 10)
 
 game = Game(screen, map, earth, player, cloud0) # create first game
 # box = Box(
@@ -79,7 +79,7 @@ def main():
         prevtime = time.time()
 
 
-        game.update(event, dt)
+        game.update(dt)
         game.draw()
 
 enemies = pygame.sprite.Group()  # group of enemy clouds
