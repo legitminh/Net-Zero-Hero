@@ -36,7 +36,7 @@ block_size = 32
 
 earth = Earth(MAP_RADIUS, ATMOS_RADIUS, 8, "assets/Earth.png")
 player = Player( 8, (255,255,0), MAP_RADIUS)
-cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 100, 10)
+cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 1, 10)
 
 game = Game(screen, map, earth, player, cloud0) # create first game
 # box = Box(
@@ -71,19 +71,15 @@ game = Game(screen, map, earth, player, cloud0) # create first game
 #     True,
 #     10,
 #     image_box
-# )
-
+#
 def main(): 
     prevtime = time.time()
     while True: #the only cycle
         dt = time.time() - prevtime #unit is milisecond/frame
         prevtime = time.time()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
 
-            game.update(event, dt)
+
+        game.update(event, dt)
         game.draw()
 
 enemies = pygame.sprite.Group()  # group of enemy clouds

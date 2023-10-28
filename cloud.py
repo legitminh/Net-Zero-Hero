@@ -13,11 +13,12 @@ class Cloud:
         self.dist += distance
     
     def update(self, dt):
-        self.move(-1 * dt * self.speed)
+        self.move(-1 * self.speed * dt)
 
     def pos(self):
         return cos(self.angle) * self.dist, sin(self.angle) * self.dist
 
     def draw(self, screen):
+        print(self.dist)
         absolutePos = self.pos()[0]+ screen.get_width()/2, self.pos()[1] + screen.get_height()/2
         pygame.draw.circle(screen, 'white', absolutePos , self.size, width=1)

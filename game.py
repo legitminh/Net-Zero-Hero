@@ -2,6 +2,7 @@ from math import pi
 from earth import Earth
 from player import Player
 from cloud import Cloud
+import sys
 import pygame
 
 BG_COLOR = 'black'
@@ -19,16 +20,21 @@ class Game:
         self.earth = earth
         self.player = player
 
-    def update(self, event, dt):
-        if event.type == pygame.KEYDOWN:
-            if pygame.key == pygame.K_Right:
-                self.player.move(MOVEMENT_AMOUNT)
-            elif pygame.key == pygame.K_Left:
-                self.player.move(-MOVEMENT_AMOUNT)
+    def update(self, dt):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if pygame.key == pygame.K_Right:
+                    self.player.move(MOVEMENT_AMOUNT)
+                elif pygame.key == pygame.K_Left:
+                    self.player.move(-MOVEMENT_AMOUNT)
+
         
             # if self.earth.is_collided_with()
-        for cloud in self.clouds:
-            cloud.update(dt)
+        # for cloud in self.clouds:
+        self.clouds[0].update(dt)
         self.player.update(dt)
         print(dt)
         self.draw()
