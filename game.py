@@ -27,6 +27,8 @@ class Game:
     
     def purchase(self, loc, thing, price):
         if self.playerCash >= price and self.map[self.player.slot] != thing:
+            if ( self.map[loc] == thing): 
+                self.map[loc] == self.map[loc]
             self.map[loc] = thing
             self.playerCash -= price
         print(self.map)
