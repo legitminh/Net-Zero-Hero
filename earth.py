@@ -1,5 +1,6 @@
 import pygame
 from math import sin, cos, pi
+from sys import exit
 
 
 class Earth:
@@ -21,6 +22,8 @@ class Earth:
         screen.blit(text, text_rect)
         
     def draw(self, screen, map):
+        if self.hp <= 0:
+            exit()
         for i, slot in enumerate(map):
             x, y = cos(i/len(map) * 2 * pi) * (self.radius+20) + (960 /2), sin(i/len(map) * 2* pi) * (self.radius+20) + (540 /2)
             convert = {

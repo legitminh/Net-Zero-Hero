@@ -4,4 +4,6 @@ The carbon dioxide enemies will approach your planet and you have to create thin
 Use the left and right arrows to move the player (the little white circle on the surface of the Earth)  
 Press 1 to create a wind turbine that attacks CO2 clouds  
 Press 2 to create a solar panel that makes 1 billion dollars per second
-Type the same tower name to upgrade
+Type the same tower name to upgrade, 
+    this increases damage for wind turbines
+    or increase income for solar farms

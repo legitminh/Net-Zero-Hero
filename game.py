@@ -44,15 +44,15 @@ class Game:
             x, y = cos(i/len(self.map) * 2 * pi) * (self.earth.radius+20) + (960 /2), sin(i/len(self.map) * 2* pi) * (self.earth.radius+20) + (540 /2)
             if tower == ('', 0): pass
             elif tower[0] == "solar":
-                self.playerCash += tower[1] // 2
+                self.playerCash += tower[1]
             elif tower[0] == "wind":
                 angle = i/self.MAPSIZE * 2 * pi
                 self.projectiles.append(
                     Projetile( 
                         x, 
                         y, 
-                        cos(angle + (random.random()-0.5)) * 20 , 
-                        sin(angle + (random.random()-0.5)) * 20, tower[1] )
+                        cos(angle + (random.random()-0.5)*2) * 20 , 
+                        sin(angle + (random.random()-0.5)*2) * 20, tower[1] )
                     )
     def update(self, dt):
         for event in pygame.event.get():
