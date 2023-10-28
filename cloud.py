@@ -1,9 +1,10 @@
 import pygame
-from math import sin, cos
+from math import sin, cos, pi
 
 
 class Cloud:
-    def __init__(self, dist, angle, speed, size):
+    def __init__(self, ATMOS_SIZE, dist, angle, speed, size):
+        self.ATMOS_SIZE = ATMOS_SIZE
         self.dist = dist
         self.angle = angle
         self.speed = speed
@@ -14,9 +15,12 @@ class Cloud:
     
     def update(self, dt):
         self.move(-1 * self.speed * dt)
+        if self.dist <= self.ATMOS_SIZE:
+            return True
+
 
     def pos(self):
-        return cos(self.angle) * self.dist, sin(self.angle) * self.dist
+        return cos(self.angle * 2 * pi) * self.dist, sin(self.angle * 2 * pi) * self.dist
 
     def draw(self, screen):
         absolutePos = self.pos()[0] + screen.get_width()/2, self.pos()[1] + screen.get_height()/2

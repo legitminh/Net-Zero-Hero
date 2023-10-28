@@ -33,8 +33,9 @@ class Game:
 
         
             # if self.earth.is_collided_with()
-        # for cloud in self.clouds:
-        self.clouds[0].update(dt)
+        for cloud in self.clouds:
+            if (cloud.update(dt)):
+                self.clouds.remove(cloud)
         self.player.update(dt)
         print(dt)
         self.draw()
@@ -57,3 +58,6 @@ class Game:
       text = font.render(str(what), True, 'black')
       text_rect = text.get_rect(center=(x, y))
       self.screen.blit(text, text_rect)
+
+    def add_cloud(self, cloud):
+        self.clouds.append(cloud)

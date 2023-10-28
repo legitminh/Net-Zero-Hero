@@ -8,6 +8,7 @@ import pygame
 from earth import Earth 
 from cloud import Cloud
 from player import Player
+import random
 pygame.font.init()
 pygame.init()
 
@@ -36,9 +37,30 @@ block_size = 32
 
 earth = Earth(MAP_RADIUS, ATMOS_RADIUS, 8, "assets/Earth.png")
 player = Player( 8, (255,255,0), MAP_RADIUS)
-cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 10, 10)
+cloud0 = Cloud( ATMOS_RADIUS, screen.get_height() / 2, 0, 10, 10)
 
 game = Game(screen, map, earth, player, cloud0) # create first game
+
+def main(): 
+    prevtime = time.time()
+    secondCounter = 0
+    while True: #the only cycle
+        dt = time.time() - prevtime #unit is milisecond/frame
+        prevtime = time.time()
+        secondCounter += dt
+
+        if (secondCounter >= 1 ):
+            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10) )
+            secondCounter = 0
+
+        game.update(dt)
+        game.draw()
+
+enemies = pygame.sprite.Group()  # group of enemy clouds
+
+
+if __name__ == '__main__':
+    main()
 # box = Box(
 #     screen,
 #     lambda x, y: (x//2, y//2),
@@ -72,19 +94,3 @@ game = Game(screen, map, earth, player, cloud0) # create first game
 #     10,
 #     image_box
 #
-def main(): 
-    prevtime = time.time()
-    while True: #the only cycle
-        dt = time.time() - prevtime #unit is milisecond/frame
-        prevtime = time.time()
-
-
-        game.update(dt)
-        game.draw()
-
-enemies = pygame.sprite.Group()  # group of enemy clouds
-
-
-if __name__ == '__main__':
-    main()
-    
