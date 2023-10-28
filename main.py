@@ -35,8 +35,8 @@ BG_COLOR = 'light gray'
 block_size = 32
 
 earth = Earth(MAP_RADIUS, ATMOS_RADIUS, 8, "assets/Earth.png")
-player = Player( 8, (255,255,255), MAP_RADIUS)
-cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 10, 10)
+player = Player( 8, (255,255,0), MAP_RADIUS)
+cloud0 = Cloud( ATMOS_RADIUS * 2, 0, 100, 10)
 
 game = Game(screen, map, earth, player, cloud0) # create first game
 # box = Box(

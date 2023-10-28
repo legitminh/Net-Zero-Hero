@@ -12,7 +12,7 @@ class Game:
     def __init__(self, screen, map, earth, player, *clouds):
         self.screen = screen
         self.Clock = pygame.time.Clock()
-        self.framerate = 60
+        self.frame_rate = 60
         self.map = map
         self.MAPSIZE = len(map)
         self.clouds = [cloud for cloud in clouds]
@@ -27,16 +27,21 @@ class Game:
                 self.player.move(-MOVEMENT_AMOUNT)
         
             # if self.earth.is_collided_with()
-        for self.cloud in self.clouds:
-          self.cloud.update(dt)
+        for cloud in self.clouds:
+            cloud.update(dt)
         self.player.update(dt)
+        print(dt)
         self.draw()
         
     
-    def draw(self ): #render
+    def draw(self): #render everything
         # fill background
         self.screen.fill(BG_COLOR)
-    
+
+        self.earth.draw(self.screen, self.MAPSIZE)
+        self.player.draw(self.screen, self.MAPSIZE)
+        for cloud in self.clouds:
+            cloud.draw(self.screen)
         self.Clock.tick(self.frame_rate)
         pygame.display.update()
     

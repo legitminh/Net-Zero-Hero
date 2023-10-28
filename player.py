@@ -5,6 +5,7 @@ from math import sin, cos, pi
 class Player:
     def __init__(self, size, color, dist):
         self.dist = dist
+        self.size = size
         self.image = pygame.Surface([size, size])
         self.image.fill(color)
         self.rect = self.image.get_rect()
@@ -15,7 +16,7 @@ class Player:
         self.slot %= map_size
 
     def pos(self, map_size):
-        return cos(self.slot / map_size) * dist, sin(self.slot / map_size) * dist
+        return cos(self.slot / map_size) * self.dist, sin(self.slot / map_size) * self.dist
 
     def update(self, dt):
         pass
