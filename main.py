@@ -25,7 +25,7 @@ MAPSIZE = 16 #number of slots on the earth
 MAP_RADIUS = 64; # px
 ATMOS_RADIUS = 128; # px
 #objects on map
-map = [ '' for i in range(MAPSIZE) ]
+map = [ ('', 0) for i in range(MAPSIZE) ]
 # POSITIONS = [ #map locatons in absolute pixels
 #   (MAP_RADIUS * cos(i * 2 * pi), MAP_RADIUS * sin(i * 2 * pi)) for i in range(MAPSIZE)
 # ]
@@ -56,7 +56,7 @@ def main():
         timeElapsed += dt
         if (secondCounter >= 1 ):
             game.perSecondUpdate()
-            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10, int(1.05 ** int(timeElapsed // 5))))
+            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10, int(2**int(timeElapsed // 16))))
             secondCounter = 0
 
         game.update(dt)

@@ -14,7 +14,12 @@ class Earth:
     def is_collided_with(self, cloud) -> bool:
         return cloud.dist <= self.atmosphere_radius
 
-
+    def make_text(self, x, y, what, size, screen):
+        font = pygame.font.SysFont('arial', int(size))
+        text = font.render(str(what), True, 'black')
+        text_rect = text.get_rect(center=(x, y))
+        screen.blit(text, text_rect)
+        
     def draw(self, screen, map):
         for i, slot in enumerate(map):
             x, y = cos(i/len(map) * 2 * pi) * (self.radius+20) + (960 /2), sin(i/len(map) * 2* pi) * (self.radius+20) + (540 /2)
@@ -26,7 +31,8 @@ class Earth:
                 'solar': 'yellow',
                 'nuclear': 'blue',
             }
-            pygame.draw.circle(screen, convert[slot], [x, y], 10)
+            pygame.draw.circle(screen, convert[slot[0]], [x, y], 10)
+            self.make_text(x, y, f'L{slot[1]}', 10, screen)
         pygame.draw.circle(screen, 'white', (screen.get_width() / 2, screen.get_height() / 2) , self.atmosphere_radius, width=1)
         screen.blit(self.image, [screen.get_width() / 2 - self.radius, screen.get_height() / 2 - self.radius])
     

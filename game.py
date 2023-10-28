@@ -26,27 +26,33 @@ class Game:
         self.playerCash = 8 #units in billion dollars
     
     def purchase(self, loc, thing, price):
-        if self.playerCash >= price and self.map[self.player.slot] != thing:
+        if self.playerCash < price: return 
+        if self.map[self.player.slot] != thing:
             # if ( self.map[loc] == thing): 
             #     self.map[loc] == self.map[loc]
-            self.map[loc] = thing
+            self.map[loc] = (thing, 1)
             self.playerCash -= price
+        else:
+            self.map[loc] = (thing, self.map[loc][1] + 1)
+            self.playerCash -= price
+
+        
         print(self.map)
 
     def perSecondUpdate(self):
         for i, tower in enumerate(self.map):
             x, y = cos(i/len(self.map) * 2 * pi) * (self.earth.radius+20) + (960 /2), sin(i/len(self.map) * 2* pi) * (self.earth.radius+20) + (540 /2)
-            if tower == '': pass
-            elif tower == "solar":
-                self.playerCash += 1
-            elif tower == "wind":
+            if tower == ('', 0): pass
+            elif tower[0] == "solar":
+                self.playerCash += tower[1] // 2
+            elif tower[0] == "wind":
                 angle = i/self.MAPSIZE * 2 * pi
                 self.projectiles.append(
                     Projetile( 
                         x, 
                         y, 
                         cos(angle + (random.random()-0.5)) * 20 , 
-                        sin(angle + (random.random()-0.5)) * 20, 1 )
+                        sin(angle + (random.random()-0.5)) * 20, tower[1] )
                     )
     def update(self, dt):
         for event in pygame.event.get():
