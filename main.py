@@ -20,8 +20,8 @@ Clock = pygame.time.Clock()
 frame_rate = 60
 
 MAPSIZE = 16 #number of slots on the earth
-MAP_RADIUS = 128; # px
-ATMOS_RADIUS = 256; # px
+MAP_RADIUS = 64; # px
+ATMOS_RADIUS = 128; # px
 #objects on map
 map = [ 0 for i in range(MAPSIZE) ]
 # POSITIONS = [ #map locatons in absolute pixels

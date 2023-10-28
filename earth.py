@@ -15,6 +15,6 @@ class Earth:
         return cloud.dist <= self.atmosphere_radius
 
     def draw(self, screen, map_size):
-
+        pygame.draw.circle(screen, 'white', (screen.get_width() / 2, screen.get_height() / 2) , self.atmosphere_radius, width=1)
         screen.blit(self.image, [screen.get_width() / 2 - self.radius, screen.get_height() / 2 - self.radius])
     

@@ -19,6 +19,5 @@ class Cloud:
         return cos(self.angle) * self.dist, sin(self.angle) * self.dist
 
     def draw(self, screen):
-        print(self.dist)
-        absolutePos = self.pos()[0]+ screen.get_width()/2, self.pos()[1] + screen.get_height()/2
+        absolutePos = self.pos()[0] + screen.get_width()/2, self.pos()[1] + screen.get_height()/2
         pygame.draw.circle(screen, 'white', absolutePos , self.size, width=1)
