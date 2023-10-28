@@ -37,20 +37,21 @@ block_size = 32
 
 earth = Earth(MAP_RADIUS, ATMOS_RADIUS, 8, "assets/Earth.png")
 player = Player( 8, (255,255,0), MAP_RADIUS)
-cloud0 = Cloud( ATMOS_RADIUS, screen.get_height() / 2, 0, 10, 10)
+cloud0 = Cloud( ATMOS_RADIUS, screen.get_height() / 2, 0, 10, 10, 1)
 
 game = Game(screen, map, earth, player, cloud0) # create first game
 
-def main(): 
+def main():
     prevtime = time.time()
+    timeElapsed = 0
     secondCounter = 0
     while True: #the only cycle
         dt = time.time() - prevtime #unit is milisecond/frame
         prevtime = time.time()
         secondCounter += dt
-
+        timeElapsed += dt
         if (secondCounter >= 1 ):
-            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10) )
+            game.add_cloud( Cloud( ATMOS_RADIUS, screen.get_height() / 2, random.random(), 10, 10, int(timeElapsed // 1)))
             secondCounter = 0
 
         game.update(dt)

@@ -51,13 +51,12 @@ class Game:
             cloud.draw(self.screen)
         self.Clock.tick(self.frame_rate)
         pygame.display.update()
-    
-    
-    def make_text(self, x, y, what):
-      font = pygame.font.SysFont('arial', int(10))
-      text = font.render(str(what), True, 'black')
-      text_rect = text.get_rect(center=(x, y))
-      self.screen.blit(text, text_rect)
 
     def add_cloud(self, cloud):
         self.clouds.append(cloud)
+
+    def make_text(self, x, y, what):
+        font = pygame.font.SysFont('arial', int(10))
+        text = font.render(str(what), True, 'black')
+        text_rect = text.get_rect(center=(x, y))
+        self.screen.blit(text, text_rect)
