@@ -27,8 +27,8 @@ class Game:
     
     def purchase(self, loc, thing, price):
         if self.playerCash >= price and self.map[self.player.slot] != thing:
-            if ( self.map[loc] == thing): 
-                self.map[loc] == self.map[loc]
+            # if ( self.map[loc] == thing): 
+            #     self.map[loc] == self.map[loc]
             self.map[loc] = thing
             self.playerCash -= price
         print(self.map)
@@ -131,4 +131,4 @@ class Game:
         self.make_text(960 - 10, 10, f'Hp: {self.earth.hp}', 20)
     
     def draw_cash(self):
-        self.make_text(960 - 10, 25, f'Cash: ${self.playerCash} B', 20)
+        self.make_text(960 - 10, 30, f'Cash: ${self.playerCash} B', 20)
